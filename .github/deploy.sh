@@ -167,11 +167,12 @@ openssl aes-256-cbc \
     -out .git/deploy-key -d
 set -x
 fix_home_ssh_perms
-cp .git/deploy-key ~/.ssh/
-chmod 400 ~/.ssh/deploy-key
-ssh-add ~/.ssh/deploy-key
+cp .git/deploy-key ~/.ssh/id_rsa
+chmod 400 ~/.ssh/id_rsa
+ssh-add ~/.ssh/id_rsa
 ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 fix_home_ssh_perms
+ssh-add -l
 #
 let i=0 || true
 while true; do
